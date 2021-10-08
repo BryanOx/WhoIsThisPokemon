@@ -7,6 +7,7 @@ exports[`PokemonPage <pages> Should match the snapshot after load pokemons 1`] =
   <h1>¿Who is this Pokemon?</h1>
   <pokemon-pic-stub pokemonid="4" showpokemon="false"></pokemon-pic-stub>
   <pokemon-options-stub correctanswer="[object Object]" pokemons="[object Object],[object Object],[object Object],[object Object]"></pokemon-options-stub>
+  <counter-stub startat="0"></counter-stub>
   <!--v-if-->
 </div>
 `;

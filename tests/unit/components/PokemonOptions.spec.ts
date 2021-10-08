@@ -8,7 +8,7 @@ describe("PokemonOption <components>", () => {
   let wrapper: VueWrapper<any>;
 
   function mountWrapper(
-    correctAnswer = { id: null, correct: false, message: [] as string[] }
+    correctAnswer = { id: null, correct: null, message: [] as string[] }
   ): VueWrapper<any> {
     return shallowMount(PokemonOptions, {
       props: {

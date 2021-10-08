@@ -47,7 +47,7 @@ export default defineComponent({
       showAnswer: false,
       correctAnswer: {
         id: null,
-        correct: false,
+        correct: null,
         message: []
       } as CorrectAnswer,
       counterValue: 0
@@ -88,7 +88,7 @@ export default defineComponent({
       this.showAnswer = false;
       this.correctAnswer = {
         id: null,
-        correct: false,
+        correct: null,
         message: []
       };
       this.mixPokemons();

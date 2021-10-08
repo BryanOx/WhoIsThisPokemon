@@ -2,7 +2,7 @@
   <div class="options-container">
     <ul>
       <li
-        @click="$emit('selection', pokemon.id)"
+        @click="correctAnswer.correct === null && $emit('selection', pokemon.id)"
         :key="pokemon.id"
         v-for="pokemon in pokemons"
         :class="

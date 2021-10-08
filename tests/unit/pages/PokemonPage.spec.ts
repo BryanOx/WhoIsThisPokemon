@@ -25,7 +25,7 @@ describe("PokemonPage <pages>", () => {
           showAnswer: false,
           correctAnswer: {
             id: null,
-            correct: false,
+            correct: null,
             message: []
           } as CorrectAnswer
         };
