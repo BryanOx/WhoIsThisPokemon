@@ -8,9 +8,10 @@
       :correctAnswer="correctAnswer"
       :pokemons="pokemonArr"
     />
+    <Counter :startAt="counterValue" />
     <template v-if="showAnswer">
       <h2 v-if="correctAnswer.message.lenght === 1" class="fade-in">
-        <b class="correct">{{ correctAnswer.message }}+ "hola"</b>
+        <b class="correct">{{ correctAnswer.message[0] }}</b>
       </h2>
       <h2 v-else class="fade-in">
         {{ correctAnswer.message[0] }}
@@ -19,7 +20,7 @@
         <b class="correct">{{ correctAnswer.message[3] }}</b>
       </h2>
       <div class="buttonContainer" @click="resetGame">
-        <h3 class="reset">Restart Game</h3>
+        <h3 :class=" correctAnswer.correct ? 'next button' : 'reset button'">{{ correctAnswer.correct ? 'Next' : 'Restart Game' }}</h3>
       </div>
     </template>
   </div>
@@ -28,14 +29,15 @@
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineComponent } from "@vue/runtime-core";
-import { PokemonPic, PokemonOptions } from "@/components/";
+import { PokemonPic, PokemonOptions, Counter } from "@/components/";
 import { getPokemonOptions } from "@/helpers";
 import { CorrectAnswer } from './PokemonPage.types';
 
 export default defineComponent({
   components: {
     PokemonPic,
-    PokemonOptions
+    PokemonOptions,
+    Counter
   },
   data() {
     return {
@@ -47,7 +49,8 @@ export default defineComponent({
         id: null,
         correct: false,
         message: []
-      } as CorrectAnswer
+      } as CorrectAnswer,
+      counterValue: 0
     };
   },
   methods: {
@@ -72,6 +75,11 @@ export default defineComponent({
                 `${this.pokemon.name}`
               ]
       };
+      if(this.correctAnswer.correct) {
+        this.counterValue ++
+      } else {
+        this.counterValue = 0
+      }
     },
     resetGame() {
       this.pokemonArr = [];
@@ -93,11 +101,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
-b.correct {
+.correct {
   color: rgb(24, 181, 24) !important;
 }
 
-b.incorrect {
+.incorrect {
   color: rgb(201, 31, 31) !important;
 }
 
@@ -107,12 +115,19 @@ b.incorrect {
   justify-content: center;
 }
 
-.reset {
+.button {
   background-color: white;
   padding: 10px 25px;
   cursor: pointer;
-  color: red;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 7px rgba(0, 0, 0, 0.2);
+}
+
+.next {
+  color: rgb(24, 181, 24) !important;
+}
+
+.reset {
+  color: rgb(201, 31, 31) !important;
 }
 </style>
